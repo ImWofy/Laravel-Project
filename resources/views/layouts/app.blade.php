@@ -64,6 +64,13 @@
 
     }
 //delete func
+
+function deleteAccMeth(){
+        if(confirm("Are you sure!")){
+            document.getElementById('deleteForm').submit();
+        }
+    }
+
     function deletePostMeth(){
         if(confirm("Are you sure!")){
             document.getElementById('deleteForm').submit();

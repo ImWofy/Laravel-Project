@@ -142,4 +142,14 @@ class ProfilesController extends Controller
         if($users->count()>0)
 return $users;
     }
+
+    //delete profile
+    public function deleteProfile($user)
+    {
+        if(!isset(auth()->user()->id))
+        return redirect('login');
+//dd($user);
+        $users = User::where('id','=',$user)->delete();
+return redirect('/');
+    }
 }

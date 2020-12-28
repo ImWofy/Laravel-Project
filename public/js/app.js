@@ -1928,6 +1928,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['postId'],
   methods: {
@@ -1943,10 +1948,10 @@ __webpack_require__.r(__webpack_exports__);
           if (response.data != 'null') {
             document.getElementById('commentdive' + _this.postId).innerHTML = '<p style="font-family:verdana"><a href="/profile/' + response.data.id + '" style="text-decoration: none;" class="text-dark"><strong>' + response.data.name + ' </strong></a>' + s + '</p>';
             document.getElementById('comment_textarea' + _this.postId).value = '';
-            var cCountInc = document.getElementById('commentsCount').innerText;
+            var cCountInc = document.getElementById('commentsCount' + _this.postId).innerText;
             var c = parseInt(cCountInc++);
-            document.getElementById('commentsCount').innerHTML = cCountInc;
-            document.getElementById('alert_message').style.display = "none";
+            document.getElementById('commentsCount' + _this.postId).innerHTML = cCountInc;
+            document.getElementById('alert_message' + _this.postId).style.display = "none";
             document.getElementById('commentSendButton' + _this.postId).disabled = true;
             document.getElementById('commentSendButton' + _this.postId).style.color = "lightblue";
             document.getElementById('lengthCounter' + _this.postId).innerHTML = '0/50'; // document.getElementById( 'ss' ).scrollIntoView();
@@ -1971,7 +1976,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkCommentLength: function checkCommentLength() {
       if (document.getElementById('comment_textarea' + this.postId).value.length > 50) {
-        document.getElementById('alert_message').style.display = "block";
+        document.getElementById('alert_message' + this.postId).style.display = "block";
         document.getElementById('commentSendButton' + this.postId).disabled = true;
         document.getElementById('commentSendButton' + this.postId).style.color = "lightblue";
         document.getElementById('lengthCounter' + this.postId).innerHTML = document.getElementById('comment_textarea' + this.postId).value.length + '/50';
@@ -1987,6 +1992,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     lengthCounter: function lengthCounter() {
       return "lengthCounter" + this.postId;
+    },
+    alert_message: function alert_message() {
+      return "alert_message" + this.postId;
     }
   }
 });
@@ -37842,6 +37850,20 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("small", { attrs: { id: _vm.lengthCounter } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "myalert", attrs: { id: _vm.alert_message } }, [
+        _c(
+          "span",
+          {
+            staticClass: "closebtn",
+            attrs: { onclick: "this.parentElement.style.display='none';" }
+          },
+          [_vm._v("×")]
+        ),
+        _vm._v(" "),
+        _c("strong", [_vm._v("Note!")]),
+        _vm._v(" Please type less than 50 letters.\n")
       ])
     ]
   )
@@ -50651,8 +50673,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\nawaf\Desktop\MyClasses\AdvanceWeb\blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\nawaf\Desktop\MyClasses\AdvanceWeb\blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\nawaf\Desktop\MyClasses\AdvanceWeb\MyBlogWork\blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\nawaf\Desktop\MyClasses\AdvanceWeb\MyBlogWork\blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -14,6 +14,11 @@
 	                                    outline: inherit;"  @click="postComment()" disabled="true">Post</button>
                                         <small v-bind:id="lengthCounter"></small>
                                         </div>
+                                          <div v-bind:id="alert_message" class="myalert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Note!</strong> Please type less than 50 letters.
+</div>
+
   </div>
     
 </template>
@@ -33,13 +38,13 @@
                         if(response.data!='null'){
                         document.getElementById('commentdive'+this.postId).innerHTML='<p style="font-family:verdana"><a href="/profile/'+response.data.id+'" style="text-decoration: none;" class="text-dark"><strong>'+response.data.name+' </strong></a>'+s+'</p>';
                         document.getElementById('comment_textarea'+this.postId).value='';
-                        var cCountInc = document.getElementById('commentsCount').innerText;
+                        var cCountInc = document.getElementById('commentsCount'+this.postId).innerText;
                         var c =parseInt(cCountInc++);
                         
-                        document.getElementById('commentsCount').innerHTML=cCountInc;
+                        document.getElementById('commentsCount'+this.postId).innerHTML=cCountInc;
                         
                          
-            document.getElementById('alert_message').style.display = "none";
+            document.getElementById('alert_message'+this.postId).style.display = "none";
             document.getElementById('commentSendButton'+this.postId).disabled = true; 
             document.getElementById('commentSendButton'+this.postId).style.color = "lightblue";
             document.getElementById('lengthCounter'+this.postId).innerHTML ='0/50';
@@ -77,7 +82,7 @@
      checkCommentLength(){
         if(document.getElementById('comment_textarea'+this.postId).value.length>50)
         {
-            document.getElementById('alert_message').style.display = "block";
+            document.getElementById('alert_message'+this.postId).style.display = "block";
             document.getElementById('commentSendButton'+this.postId).disabled = true; 
             document.getElementById('commentSendButton'+this.postId).style.color = "lightblue";
             document.getElementById('lengthCounter'+this.postId).innerHTML = document.getElementById('comment_textarea'+this.postId).value.length +'/50';
@@ -93,7 +98,8 @@
                 return "comment_textarea"+this.postId;
             },
             commentSendButton(){return "commentSendButton"+this.postId;},
-            lengthCounter(){return "lengthCounter"+this.postId;}
+            lengthCounter(){return "lengthCounter"+this.postId;},
+            alert_message(){return "alert_message"+this.postId;},
 
         }
         

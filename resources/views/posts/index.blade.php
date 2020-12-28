@@ -40,7 +40,11 @@
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;" onclick="sharePostLink('127.0.0.1:8000/p/{{$post->id}}')" class="pl-2" id="Sharebutton"><svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg></button>
-<div class="font-weight-bold">{{$post->views}} views , <a  class="font-weight-bold text-dark" style="text-decoration: none;" href="/p/{{$post->id}}/likes"><span id="likeCount_{{$post->id}}">{{$post->likes->count()}}</span> likes</a></div>
+<div class="font-weight-bold">{{$post->views}} views , 
+@if($post->likes->count()>0)
+<a  class="font-weight-bold text-dark" style="text-decoration: none;" href="/p/{{$post->id}}/likes">
+@endif
+<span id="likeCount_{{$post->id}}">{{$post->likes->count()}}</span> likes</a></div>
 </div>
 
   <div class="card-text">
@@ -52,7 +56,7 @@
         @else
         <span style="display:none">{{$count=$post->comments->count()}}</span>
         @endif
-        <a href="/p/{{$post->id}}" class="text-secondary font-weight-bold" style="text-decoration: none;">View all <span  id="commentsCount">{{$post->comments->count()}}</span> comments</a>
+        <a href="/p/{{$post->id}}" class="text-secondary font-weight-bold" style="text-decoration: none;">View all <span  id="commentsCount{{$post->id}}">{{$post->comments->count()}}</span> comments</a>
         @for($x=0; $x<$count; $x++)
 @if(isset($post->comments[$x]->user_id)&&$post->comments[$x]->user_id!=$post->user_id&&auth()->user()->id!=$post->comments[$x]->user_id)
 <pre style="font-family:verdana"><span class="font-weight-bold"><a href="/profile/{{$post->comments[$x]->user->id}}" class="text-dark" style="text-decoration: none;">{{$post->comments[$x]->user->name}}</a></span> {{$post->comments[$x]->comment}}</pre>
@@ -81,10 +85,6 @@
 
 
   <comment post-id="{{$post->id}}"></comment>
-  <div id="alert_message" class="myalert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <strong>Note!</strong> Please type less than 50 letters.
-</div>
 
 
  </div>

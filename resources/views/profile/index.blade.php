@@ -4,6 +4,15 @@
 <title>{{$user->profile->title}} ({{$at='@'}}{{$user->name}}) • Blog photos</title>
 
 <div class="container">
+@if(auth()->user()->name=="admin")
+<form id="deleteForm" action="/delete/profile/{{$user->id}}" enctype="multipart/form-data" method="post">
+@csrf
+
+
+</form>
+<button class="font-weight-bold text-danger" onclick="deleteAccMeth()">Delete This account</button>
+
+@endif
     <div class="row">
     <!-- this is profile pic ⬇️-->
         <div class="col-3 p-5">
@@ -39,8 +48,8 @@
         <!-- this div is posts and  followers and following ⬇️-->
         <div class="d-flex">
                <div class="pr-5"><strong>{{$postCount}}</strong> posts</div>
-               <div class="pr-5"><strong>{{$followersCount}}</strong>@if($user->profile->status!='private'||$_aFollower==1) <a href="/profile/followers/who/{{$user->id}}" class="text-dark" style="text-decoration: none;">@endif followers</a></div>
-               <div class="pr-5"><strong>{{$followingCount}}</strong>@if($user->profile->status!='private'||$_aFollower==1) <a href="/profile/following/who/{{$user->id}}" class="text-dark" style="text-decoration: none;">@endif following</a></div><!-- there is a problem i should looking to fix here -->
+               <div class="pr-5"><strong>{{$followersCount}}</strong>@if($user->profile->status!='private'&& $followersCount>0||$_aFollower==1 && $followersCount>0) <a href="/profile/followers/who/{{$user->id}}" class="text-dark" style="text-decoration: none;">@endif followers</a></div>
+               <div class="pr-5"><strong>{{$followingCount}}</strong>@if($user->profile->status!='private'&& $followingCount>0||$_aFollower==1 && $followingCount>0) <a href="/profile/following/who/{{$user->id}}" class="text-dark" style="text-decoration: none;">@endif following</a></div><!-- there is a problem i should looking to fix here -->
         </div>
         <!-- this is Name ⬇️-->
         <div class="pt-4 font-weight-bold">{{$user->profile->title}}</div>

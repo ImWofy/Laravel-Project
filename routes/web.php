@@ -155,3 +155,10 @@ return redirect()->away($userUrl->profile->url);
         \App\Models\User::where('id', '=', 8)->delete();
     });
 
+
+    //admin delete acc rout
+    Route::post('/delete/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'deleteProfile']);
+    Route::get('/delete/profile/{user}', function(){
+
+        return view('404');
+    });

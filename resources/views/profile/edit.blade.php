@@ -109,7 +109,9 @@
                                         <strong style="color:red">{{ $message }}</strong>
                                     
                                 @enderror
+                        <div id="imagePreview" class="pt-2"></div> 
                         </div>
+
 
                         <div class="row pt-4">
                             <button id="PostpButton" class="btn btn-primary">Save Profile</button>
